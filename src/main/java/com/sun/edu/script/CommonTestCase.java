@@ -31,7 +31,6 @@ public abstract class CommonTestCase {
 
 	@AfterTest
 	public void end() {
-		System.out.println("after");
 		driver.quit();
 	}
 
@@ -39,6 +38,12 @@ public abstract class CommonTestCase {
 	public Object[][] SetLogin() {
 //		Object[][] data = XLSHelper.retrieveCells("user.xls", 2, 2);
 		Object[][] data = XLSHelper.retrieveCells("user.xls", 0, 2, 2, 2);
+		return data;
+	}
+	
+	@DataProvider
+	public Object[][] setBookInfo() {
+		Object[][] data = XLSHelper.retrieveCells("book.xls", 0, 2, 2, 6);
 		return data;
 	}
 
@@ -54,6 +59,11 @@ public abstract class CommonTestCase {
 			WebElement btnLogin = driver.findElement(By.cssSelector(".login_wsm"));
 			btnLogin.click();
 		}
+	}
+	
+	public void wait(String element, Integer time) {
+		WebDriverWait wait = new WebDriverWait(driver, time);
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(element)));
 	}
 
 	private void loginWsm(String email, String password) {
