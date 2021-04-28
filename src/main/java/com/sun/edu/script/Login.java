@@ -7,4 +7,5 @@ public class Login extends CommonTestCase {
 	public void login(String email, String pass) {
 		super.login(email, pass);
 	}
+	
 }
